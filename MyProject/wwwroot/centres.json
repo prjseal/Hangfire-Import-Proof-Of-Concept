@@ -1,23 +1,30 @@
 [
   {
-    "name": "BlueWave Yachting Institute",
-    "latitude": 51.6548,
-    "longitude": -1.12412,
-    "lastModifiedDate": "2023-07-01",
+    "name": "Hoxton Docks",
+    "latitude": 51.53565,
+    "longitude": -0.07124,
+    "lastModifiedDate": "2023-07-07",
     "systemid": "2c79deb6-7868-45e7-b657-777e6c2ef711"
   },
   {
-    "name": "YachtMaster Sailing School",
-    "latitude": 50.12345,
-    "longitude": -1.2345,
-    "lastModifiedDate": "2023-07-05",
+    "name": "Techspace Shoreditch",
+    "latitude": 51.52414,
+    "longitude": -0.08274,
+    "lastModifiedDate": "2023-07-07",
     "systemid": "79ead865-30d2-41dd-8737-adc675d99484"
   },
   {
-    "name": "SailStar Maritime Academy",
-    "latitude": 52.00012,
-    "longitude": -1.19813,
-    "lastModifiedDate": "2023-07-05",
+    "name": "Barbican Centre",
+    "latitude": 51.52031,
+    "longitude": -0.09381,
+    "lastModifiedDate": "2023-07-07",
     "systemid": "f9a7d759-b020-4483-bdbf-9411cc693d73"
+  },
+  {
+    "name": "Everyman Kings Cross",
+    "latitude": 51.53752,
+    "longitude": -0.12401,
+    "lastModifiedDate": "2023-07-07",
+    "systemid": "f9a7d123-b020-4483-bdbf-9411cc693d73"
   }
 ]

@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using MyProject.Models;
+﻿using MyProject.Models;
 using Newtonsoft.Json;
-using Polly;
 using System.Net;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
-using Umbraco.Extensions;
 
 namespace MyProject.Services;
 
@@ -47,16 +43,18 @@ public class ImportService : IImportService
             //get a set of data to import
             var data = JsonConvert.DeserializeObject<IEnumerable<CentreModel>>(jsonData);
 
+
             if (data != null)
             {
-                var i = 1;
+                var needToPublish = false;
+
                 foreach (var centre in data)
                 {
                     if(!existingPages.ContainsKey(centre.systemid.ToString()))
                     {
                         //create an umbraco node
-                        Hangfire.BackgroundJob.Schedule<IImportService>(x => 
-                            x.ImportSingleCentre(centre, rootContent.Id), DateTimeOffset.UtcNow.AddSeconds(i * 10));
+                        Hangfire.BackgroundJob.Enqueue<IImportService>(x => x.ImportSingleCentre(centre, rootContent.Id));
+                        needToPublish = true;
                     }
                     else
                     {
@@ -66,11 +64,15 @@ public class ImportService : IImportService
                         var lastUpdatedDate = contentItem.GetValue<DateTime>("lastModifiedDate");
 
                         if (lastUpdatedDate >= centre.lastModifiedDate) continue;
-                        
-                        Hangfire.BackgroundJob.Schedule<IImportService>(x => 
-                            x.UpdateSingleCentre(centre, contentItem.Id), DateTimeOffset.UtcNow.AddSeconds(i * 10));
+
+                        Hangfire.BackgroundJob.Enqueue<IImportService>(x => x.UpdateSingleCentre(centre, contentItem.Id));
+                        needToPublish = true;
                     }
-                    i++;
+                }
+
+                if(needToPublish)
+                {
+                    Hangfire.BackgroundJob.Enqueue<IImportService>(x => x.PublishImportFolderAndChildren());
                 }
             }
         }
@@ -104,5 +106,14 @@ public class ImportService : IImportService
         contentItem.SetValue("lastModifiedDate", centre.lastModifiedDate);
 
         _contentService.Save(contentItem);
+    }
+
+    public void PublishImportFolderAndChildren()
+    {
+        var rootContent = _contentService.GetRootContent().FirstOrDefault(x => x.ContentType.Alias == "contentFolder");
+
+        if (rootContent == null) throw new Exception("Unable to get import folder to publish");
+
+        _contentService.SaveAndPublishBranch(rootContent, force: true);
     }
 }

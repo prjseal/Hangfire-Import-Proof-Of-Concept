@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.Common;
 using Hangfire.Console;
 using Hangfire.Server;
 using MyProject.Services;
@@ -12,7 +13,7 @@ namespace MyProject.Composers
         {
             if(AllowRunningHangfireJobs(builder))
             {
-                RecurringJob.AddOrUpdate<IImportService>("ImportServiceDataUpdate", x => x.Import(), "*/1 * * * *");
+                RecurringJob.AddOrUpdate<IImportService>("Import", x => x.Import(), "*/1 * * * *");
             }
         }
 
