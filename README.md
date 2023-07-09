@@ -74,7 +74,7 @@ It then does a save and publish with children on the Import Folder.
 
 ## How can I test it?
 
-Try adding a centre in the centres.json file, paste it below, edit it and then save the file. Then you can go to the hangfire dashboard in the settings section and see if the import task creates any new jobs like create or update.
+Try adding a centre in the `centres.json` file, paste it below, edit it and then save the file. Then you can go to the hangfire dashboard in the settings section and see if the import task creates any new jobs like create or update.
 
 ```json
 ,
