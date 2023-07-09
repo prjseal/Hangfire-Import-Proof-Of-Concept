@@ -91,6 +91,35 @@ Then when they have finished running you can check the content section again to 
 
 ![image](https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/8380054a-cc6d-437f-a1bd-2c1f618e342f)
 
+## JobsComposer.cs
+
+This file is responsible for scheduling the Import task to run every minute and it contains a cron expression for how often to run it. [What is a Cron expression?](https://en.wikipedia.org/wiki/Cron)
+
+```cs
+using Hangfire;
+using MyProject.Services;
+using Umbraco.Cms.Core.Composing;
+
+namespace MyProject.Composers;
+
+public class JobsComposer : IComposer
+{
+    public void Compose(IUmbracoBuilder builder)
+    {
+        if(AllowRunningHangfireJobs(builder))
+        {
+            RecurringJob.AddOrUpdate<IImportService>("Import", x => x.Import(), "*/1 * * * *");
+        }
+    }
+
+    private bool AllowRunningHangfireJobs(IUmbracoBuilder builder)
+    {
+        var config = builder.Services.BuildServiceProvider().GetService<IConfiguration>();
+        return config.GetValue<bool>("AllowRunningHangfireJobs");
+    }
+}
+```
+
 
 ## Credits
 
