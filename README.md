@@ -24,3 +24,7 @@ It then does a save and publish with children on the Import Folder.
 Try copying a centre in the centres.json file, paste it below, edit it and then save the file. Then you can go to the hangfire dashboard in the settings section and see if the import task creates any new jobs like create or update.
 
 Then when they have finished running you can check the content section again to see your content item added or updated.
+
+## Credits
+
+Thanks to Nurhak Kaya from Great State for helping me get set up with this and to ClerksWell for giving me the time to work on this and publish it.
