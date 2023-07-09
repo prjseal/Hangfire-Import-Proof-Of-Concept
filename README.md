@@ -1,6 +1,13 @@
 # Hangfire-Import-Proof-Of-Concept
 
-This is a proof of concept project to lear how to do imports using hangfire jobs.
+This is a proof of concept project to learn how to do imports using hangfire jobs.
+
+## What technology is installed
+
+We have an Umbraco 10.5.1 website, with the packages `uSync` and `Cultiv.Hangfire` installed
+uSync is just to help you get setup, but the main thing in this project is the `Cultiv.Hangfire` package which gives you a user interface and visual dashboard to see the queue and status of jobs.
+
+![image](https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/82ad5aaf-d94f-4863-9cd1-1107af929e7a)
 
 ## How to set it up.
 
