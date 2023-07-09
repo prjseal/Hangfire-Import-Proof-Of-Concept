@@ -120,6 +120,44 @@ public class JobsComposer : IComposer
 }
 ```
 
+## Import Service
+
+In the services folder, there is an interface called IImportService and a concrete class called ImportService which implements the interface.
+You can write your own logic, but a key part of the import method to note is where it adds the individual create or update tasks to the queue.
+
+```cs
+if (data != null)
+{
+    var needToPublish = false;
+
+    foreach (var centre in data)
+    {
+        if(!existingPages.ContainsKey(centre.systemid.ToString()))
+        {
+            //create an umbraco node
+            Hangfire.BackgroundJob.Enqueue<IImportService>(x => x.ImportSingleCentre(centre, rootContent.Id));
+            needToPublish = true;
+        }
+        else
+        {
+            //update the umbraco node
+            if (!existingPages.TryGetValue(centre.systemid.ToString(), out var contentItem)) continue;
+
+            var lastUpdatedDate = contentItem.GetValue<DateTime>("lastModifiedDate");
+
+            if (lastUpdatedDate >= centre.lastModifiedDate) continue;
+
+            Hangfire.BackgroundJob.Enqueue<IImportService>(x => x.UpdateSingleCentre(centre, contentItem.Id));
+            needToPublish = true;
+        }
+    }
+
+    if(needToPublish)
+    {
+        Hangfire.BackgroundJob.Enqueue<IImportService>(x => x.PublishImportFolderAndChildren());
+    }
+}
+```
 
 ## Credits
 
