@@ -6,24 +6,82 @@ This is a proof of concept project to lear how to do imports using hangfire jobs
 
 1. Fork the repository
 2. Clone it to your machine
-3. Create a database in SQLEXPRESS on your machine and call it `hangfire` create a SQL login that has `dbo` permissions and give it a username of `hangfire` and password of `hangfire` (You can specify your own connection string but it needs to be a SQL Server or SQL Express database. Hangfire doesn't work with SQLCE, SQLite or LocalDb).
+3. Create a database in SQLEXPRESS on your machine and call it `hangfiredb` create a SQL login that has `dbo` permissions and give it a username of `hangfire` and password of `hangfire` (You can specify your own connection string but it needs to be a SQL Server or SQL Express database. Hangfire doesn't work with SQLCE, SQLite or LocalDb).
 4. Build the solution and run it
 
 uSync should have created the content for you and hangfire should have created the required tables for you in the separate hangfire database.
 
+![image](https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/27e42928-8555-430c-b3f0-ef46c946c610)
+
 In the content section you will have an Import folder and depending on how long it took for you to check you may also have some items inside it.
+
+### Before Import
+
+![image](https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/2a464a30-5f36-4dde-9a6b-8493580cfc2f)
+
+### After Import
+
+![image](https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/5be2240c-e304-40c3-9848-3a48e8c38a9d)
 
 ## What's happening?
 
 There is a file in the wwwroot folder called `centres.json`. There is an import task that runs every minute and is checking that centres.json file as it if were a response from an external API somewhere.
+
+```js
+[
+  {
+    "name": "Hoxton Docks",
+    "latitude": 51.53565,
+    "longitude": -0.07124,
+    "lastModifiedDate": "2023-07-07",
+    "systemid": "2c79deb6-7868-45e7-b657-777e6c2ef711"
+  },
+  {
+    "name": "Techspace Shoreditch",
+    "latitude": 51.52414,
+    "longitude": -0.08274,
+    "lastModifiedDate": "2023-07-07",
+    "systemid": "79ead865-30d2-41dd-8737-adc675d99484"
+  },
+  {
+    "name": "Barbican Centre",
+    "latitude": 51.52031,
+    "longitude": -0.09381,
+    "lastModifiedDate": "2023-07-07",
+    "systemid": "f9a7d759-b020-4483-bdbf-9411cc693d73"
+  },
+  {
+    "name": "Everyman Kings Cross",
+    "latitude": 51.53752,
+    "longitude": -0.12401,
+    "lastModifiedDate": "2023-07-07",
+    "systemid": "f9a7d123-b020-4483-bdbf-9411cc693d73"
+  }
+]
+```
+
 It checks to see if there are any new centres added or any changes to the centres that are there and then if there are it adds them to the hangfire queue to create or update them.
 It then does a save and publish with children on the Import Folder.
 
 ## How can I test it?
 
-Try copying a centre in the centres.json file, paste it below, edit it and then save the file. Then you can go to the hangfire dashboard in the settings section and see if the import task creates any new jobs like create or update.
+Try adding a centre in the centres.json file, paste it below, edit it and then save the file. Then you can go to the hangfire dashboard in the settings section and see if the import task creates any new jobs like create or update.
+
+```json
+,
+  {
+    "name": "Metal Box Factory",
+    "latitude": 51.50473,
+    "longitude": -0.09706,
+    "lastModifiedDate": "2023-07-09",
+    "systemid": "b5a7a222-a212-5637-acdf-2231cb723d14"
+  }
+```
 
 Then when they have finished running you can check the content section again to see your content item added or updated.
+
+![image](https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/8380054a-cc6d-437f-a1bd-2c1f618e342f)
+
 
 ## Credits
 
