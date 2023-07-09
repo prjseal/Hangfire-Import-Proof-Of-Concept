@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MyProject/uSync/v9/Content/techspace-shoreditch.config
+/MyProject/uSync/v9/Content/hoxton-docks.config
+/MyProject/uSync/v9/Content/everyman-kings-cross.config
+/MyProject/uSync/v9/Content/barbican-centre.config
