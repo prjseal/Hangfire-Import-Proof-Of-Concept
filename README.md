@@ -161,4 +161,4 @@ if (data != null)
 
 ## Credits
 
-Thanks to Nurhak Kaya from Great State for helping me get set up with this and to ClerksWell for giving me the time to work on this and publish it.
+Thanks to Nurhak Kaya from Great State for helping me get set up with this and to ClerksWell for giving me the time to work on this and publish it. Not forgetting Sebastiaan Janssen who made the `Cultiv.Hangfire` package.
