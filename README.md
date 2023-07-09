@@ -1,6 +1,6 @@
 # Hangfire-Import-Proof-Of-Concept
 
-This is a proof of concept project to learn how to do imports using hangfire jobs.
+This is a proof of concept project for me to learn and share how to do imports using hangfire jobs.
 
 ## What technology is installed
 
