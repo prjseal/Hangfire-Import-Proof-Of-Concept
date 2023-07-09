@@ -9,7 +9,7 @@ uSync is just to help you get setup, but the main thing in this project is the `
 
 ![image](https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/82ad5aaf-d94f-4863-9cd1-1107af929e7a)
 
-I have followed the steps outlined in this [skrift article]([url](https://skrift.io/issues/performance-and-availability-improvements-of-umbraco-v10-websites-with-hangfire-jobs/)) by Nurhak Kaya
+I have followed the steps outlined in this [skrift article](https://skrift.io/issues/performance-and-availability-improvements-of-umbraco-v10-websites-with-hangfire-jobs/) by Nurhak Kaya
 
 ## How to set it up.
 
