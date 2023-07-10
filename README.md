@@ -1,8 +1,10 @@
-# Hangfire-Import-Proof-Of-Concept
+<img style="height:30px; width: auto;" src="https://github.com/prjseal/Hangfire-Import-Proof-Of-Concept/assets/9142936/70254e13-b727-40a9-8120-5ba613a5fa8f" alt="ClerksWell Logo" />
+
+# Hangfire Import Proof of Concept
 
 This is a proof of concept project for me to learn and share how to do imports using hangfire jobs.
 
-## What technology is installed
+## What technology is installed?
 
 We have an Umbraco 10.5.1 website, with the packages `uSync` and `Cultiv.Hangfire` installed
 uSync is just to help you get setup, but the main thing in this project is the `Cultiv.Hangfire` package which gives you a user interface and visual dashboard to see the queue and status of jobs.
