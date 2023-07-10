@@ -17,7 +17,7 @@ I have followed the steps outlined in this [skrift article](https://skrift.io/is
 
 1. Fork the repository
 2. Clone it to your machine
-3. Create a database in SQLEXPRESS on your machine and call it `hangfiredb` create a SQL login that has `dbo` permissions and give it a username of `hangfire` and password of `hangfire` (You can specify your own connection string but it needs to be a SQL Server or SQL Express database. Hangfire doesn't work with SQLCE, SQLite or LocalDb).
+3. Create a database in SQLEXPRESS on your machine and call it `hangfiredb` create a SQL login that has `dbo` permissions and give it a username of `hangfire` and password of `hangfire` (You can specify your own connection string but it needs to be a SQL Server or SQL Express database. Hangfire doesn't work with SQLCE, SQLite or LocalDb). Here is a [code snippet](https://codeshare.co.uk/blog/sql-snippet-for-creating-a-database-with-a-login-and-user-in-sql/)  to help you create your database and uer using a SQL statement. 
 4. Build the solution and run it
 
 uSync should have created the content for you and hangfire should have created the required tables for you in the separate hangfire database.
